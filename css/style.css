@@ -1,0 +1,228 @@
+/* step 1 */
+@keyframes logo-expand{ 
+    from{
+        width: 25px; 
+        opacity: 0;
+    }
+    to{
+        width: 475px; 
+        opacity: 1;
+    }
+    /* from is the start, to is the end */
+    /* grow from 25 to 475 px width */
+    /* increase from 0->1 opacity */
+    /* logo-expand is the animation name */
+}
+#logo{
+    animation: logo-expand;
+    /* call the animation name that was declared */
+    animation-duration: 5s;
+    /* make it last 5s */
+    /* animation-delay: initial; */
+}
+
+
+/* step 2 */
+/* use Poppins first, serif as deafault */
+body{
+    font-family: "Poppins", serif;
+    /* if its a default font, don't need quotes, but need them here since it;s a google font */
+    background-image: url("../images/concrete_seamless.png"); 
+    background-color: #f1f1f1;
+}
+/* step 3 */
+/* align items in column and center horizontally */
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* step 4 */
+/* aligns items in a column */
+.nav_links{
+    display: flex;
+    flex-direction: column;
+}
+
+/* step 5 */
+.nav_item a:visited{
+    /* use a select links in .nav_item */
+    /* :visited selects the links only after they've been clicked */
+    color: blue;
+}
+
+/* step 6 */
+/* > selects the direct children of .card */ 
+.card > header{
+    background-color: #288088;
+    border: solid 2px #45ADAD;
+    padding: 20px 0px;
+    border-radius: 50px 50px 0px 0px;
+}
+
+/* white space still shows, so use a second selector on .card */
+.card{
+    border-radius: 50px 50px 0px 0px;
+}
+
+/* step 7 */
+/* .pricing is the container of .card */
+/* TIP: Some flex properties should only be used on the flex container (flex-direction,flex-wrap, align-items, justify-content) whereas some others should be used on the items within the flex container (flex-basis, align-self).  */
+.card{
+    display: flex;
+    flex-basis: 450px;
+    /* flex-basis sets the initial size */
+    flex-direction: column;
+    /* flex-direction puts the items within each card back into a column */
+}
+
+/* step 8 */
+.pricing{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+/* use row and wrap to align them in a column again */
+/* need to use column for .card to display the text correctly */
+
+/* step 9 */
+.gallery img{
+    border: solid 10px #50C7C7;
+    margin: 10px;
+    width: 300px; 
+}
+/* sets margin on all sides */
+/* select only the images within the gallery */
+
+/* step 10 */
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    /* use wrap to make them shift as the window increases/decreases */
+    /* align-items: stretch stretches the logo image to fill the full height, matching the screenshot*/
+}
+
+/* media query for screens greater than 900px  */
+@media screen and (min-width: 900px){
+
+    /* step 11 */
+    header{
+        display: flex;
+        flex-direction: row;
+        /* puts logo in same row as links */
+        justify-content: space-between;
+        /* this aligns the logo at far left and nav links at far right */
+    }
+    .nav_links{
+        display: flex;
+        flex-direction: row;
+        /* puts links in a row */
+    }
+
+    /* step 12 */
+    /* .pricing is the container of .card */
+    .card{
+        display: flex;
+        flex-basis: 275px;
+        align-self: center;
+        /* center the items vertically within their container */
+    }
+
+    .pricing{
+        display: flex;
+        flex-direction: row;
+        /* display cards in a row */
+        justify-content: center;
+        /* center the elements horizontally */
+        align-items: center;
+        /* center the content vertically*/
+        flex-wrap: nowrap;        
+    }
+
+    /* step 13 */
+   body > header{
+        position: sticky;
+        top: 0;
+        width: 100%;
+        /* sticky position attaches the header to the top of the viewport when its top position is 0 */
+        /* width ensures that header spans whole viewport */
+        /* selects the header where body is the parent (only 1 instance of this; we don't want the headers in main) */
+    }
+}
+
+/* step  14*/
+/* media query for reduced motion preference */
+@media (prefers-reduced-motion){
+    #logo{
+        animation: none;
+    }
+    /* stops the animation but keeps logo visible */
+}
+
+/* media query for print preview */
+@media print{
+/* step 15 and 16*/
+    body{
+        font-family: Arial, Helvetica;
+        background-image: none;
+    }
+    /* Arial first choice font with Helvetica backup */
+    /* no background image */
+    
+    /* step 17 */
+    nav{
+        display: flex;
+        width: 100%;
+    }
+    /* make container 100% so that links have 100% horizontal space */
+    .nav_links{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-around;
+    }
+    /* justify-content: space-around spaces the links evenly but has a 1/2 size space on either end */
+    /* width must take up 100% of horiztonal space for links to evenly space */
+    /* row to make them display in a row rather than stacked in a column */
+
+    /* step 18 */
+    .pricing{
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-end;
+    }
+    /* align-items;flex-end aligns the cards flush along the bottom axis */
+    /* row + nowrap puts the items in one line */
+
+    /* step 19 */
+    .card{
+        border: solid 2px #45ADDD;
+        /* styles the border */
+        display: flex;
+        flex-basis: 325px;
+        /* sets each card to 325px size */
+    }
+
+    /* step 20 */
+    .gallery{
+        display: none;
+    }
+    /* this fully hides the element and does NOT leave the space it takes up */
+    #gallery{
+        visibility: hidden;
+    }
+    /* this leaves the space that the element takes up; I did it this way because it pushed the footer to a second page to match the screenshot */
+
+    /* step 21 */
+    .pricing ul li:nth-child(2)::after{
+        content: "\01F44D";
+    }
+    /* select the second li item within a ul within the pricing class */
+    /* use the ::after pseudo element to place it after the li item */
+    /* add the codepoint for the thumbs up emoji */
+}
